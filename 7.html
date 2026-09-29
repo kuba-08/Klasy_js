@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form>
+        Imie:
+        <input type="text" id="imie"><br>
+        E-mail:
+        <input type="email" id="email"><br>
+        Haslo:
+        <input type="password" id="haslo"><br>
+
+        <button type="submit" onclick="dodajUzytkownika(event)">Zarejestruj sie</button>
+    </form>
+    <p id="komunikat"></p>
+<script>
+class Uzytkownik {
+    constructor(imie, email, haslo)
+    {
+        this.imie = imie;
+        this.email = email;
+        this.haslo = haslo;
+    }
+    
+}
+const komunikat = document.getElementById("komunikat")
+const uzytkownicy = [];
+function dodajUzytkownika(event)
+{
+    event.preventDefault();
+const imie = document.getElementById("imie").value;
+const email = document.getElementById("email").value;
+const haslo = document.getElementById("haslo").value;
+
+const silneHaslo = /^(?=.*[A-Za-z])(?=.*[0-9]).{8,}$/.test(haslo);
+
+if (!silneHaslo) {
+    komunikat.innerHTML = "Haslo musi sie skladac z minimum 8 znakow oraz zawierac litery i cyfry.";
+    return
+}
+const uzytkownik = new Uzytkownik(imie, email, haslo);
+
+uzytkownicy.push(uzytkownik);
+
+komunikat.innerHTML = "Uzytkownik zostal dodany.";
+
+console.log(uzytkownicy);
+
+
+
+}
+
+
+</script>
+</body>
+
+</html>
